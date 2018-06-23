@@ -1,19 +1,36 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 //https://webpack.js.org/concepts/loaders/
-import styles from "style-loader!css-loader?modules!./Nav.css";
+import styles from "./Nav.css";
 
 export default class Nav extends React.Component {
   constructor() {
     super()
     this.state = {
       collapsed: true, 
-      hover: false, 
+      hover1: false, 
+      hover2: false,
+      hover3: false,
     };
   }
-  toggleHover(){
-    console.log(this.state.hover);    
-    this.setState({hover: !this.state.hover})
+
+  
+  togglehover1(){
+    if (location.hash.includes('#/?') === false) {
+      this.setState({hover1: !this.state.hover1})
+    }
+  }
+
+  togglehover2(){
+    if (location.hash.includes('favorites') === false) {
+      this.setState({hover2: !this.state.hover2})
+    }
+  }
+
+  togglehover3(){
+    if (location.hash.includes('settings') === false) {
+      this.setState({hover3: !this.state.hover3})
+    }
   }
 
   toggleCollapse() {
@@ -34,18 +51,10 @@ export default class Nav extends React.Component {
         alternative to this is simply stick to css using... :local(.li:hover){ background: yellow; }
     */ 
     
-    var inline_style;
+    let inline_style1 = this.state.hover1 ? { backgroundColor: '#151d27' } : { backgroundColor: 'rgb(36,48,64)' };
+    let inline_style2 = this.state.hover2 ? { backgroundColor: '#151d27' } : { backgroundColor: 'rgb(36,48,64)' };
+    let inline_style3 = this.state.hover3 ? { backgroundColor: '#151d27' } : { backgroundColor: 'rgb(36,48,64)' };
 
-    if (this.state.hover) {
-      inline_style = {
-        backgroundColor: '#151d27'
-      }
-    } else {
-      inline_style = {
-        backgroundColor: 'rgb(36,48,64)'
-      }
-    }
-    
     return (
       <nav class={"navbar navbar-inverse navbar-fixed-top bg-dark navbar-dark " + styles.nav_bar}  role="navigation" >
         <div className="container">        
@@ -63,17 +72,17 @@ export default class Nav extends React.Component {
           <div className={"navbar-collapse" + navClass} id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li className={featuredClass}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }}>
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style1} onMouseEnter={this.togglehover1.bind(this)} onMouseLeave={this.togglehover1.bind(this)}>
                   Todos
                 </IndexLink>
               </li>
               <li className={archivesClass}>
-                <Link to="favorites" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
+                <Link to="favorites" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style2} onMouseEnter={this.togglehover2.bind(this)} onMouseLeave={this.togglehover2.bind(this)}>
                   Favorites
                 </Link>
               </li>
               <li class={settingsClass}>
-                <Link to="settings" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }}>
+                <Link to="settings" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style3} onMouseEnter={this.togglehover3.bind(this)} onMouseLeave={this.togglehover3.bind(this)}>
                   Settings
                 </Link>
               </li>
