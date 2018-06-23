@@ -17,6 +17,7 @@ class TodoStore extends EventEmitter {
         complete: false
       },
     ];
+    window.temp2 = this.todos;
   }
 
   createTodo(text) {

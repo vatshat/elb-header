@@ -22,7 +22,7 @@ export default class Nav extends React.Component {
   }
 
   togglehover2(){
-    if (location.hash.includes('favorites') === false) {
+    if (location.hash.includes('headers') === false) {
       this.setState({hover2: !this.state.hover2})
     }
   }
@@ -42,7 +42,7 @@ export default class Nav extends React.Component {
     const { location } = this.props;
     const { collapsed } = this.state;
     const featuredClass = location.pathname === "/" ? "active" : "";
-    const archivesClass = location.pathname.match(/^\/favorites/) ? "active" : "";
+    const headersClass = location.pathname.match(/^\/headers/) ? "active" : "";
     const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
     
@@ -76,9 +76,9 @@ export default class Nav extends React.Component {
                   Todos
                 </IndexLink>
               </li>
-              <li className={archivesClass}>
-                <Link to="favorites" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style2} onMouseEnter={this.togglehover2.bind(this)} onMouseLeave={this.togglehover2.bind(this)}>
-                  Favorites
+              <li className={headersClass}>
+                <Link to="headers" onClick={this.toggleCollapse.bind(this)} activeStyle={{ background: '#151d27' }} style={inline_style2} onMouseEnter={this.togglehover2.bind(this)} onMouseLeave={this.togglehover2.bind(this)}>
+                  Headers
                 </Link>
               </li>
               <li class={settingsClass}>

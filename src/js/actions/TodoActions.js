@@ -18,6 +18,8 @@ export function deleteTodo(id) {
 
 export function reloadTodos() {
   /* 
+    https://stackoverflow.com/questions/39019094/reactjs-get-json-object-data-from-an-url
+    
     axios("http://someurl.com/somedataendpoint").then((data) => {
       console.log("got the data!", data);
     })
